@@ -1,8 +1,16 @@
-import { Link, Outlet } from "react-router";
+import { Link, Outlet, useLocation } from "react-router";
 import styles from "./Layout.module.css";
 import Button from "../../components/Button/Button";
+import { useEffect } from "react";
+import cn from "classnames";
 
 export function Layout() {
+  const location = useLocation();
+
+  useEffect(() => {
+    console.log(location);
+  }, [location]);
+
   return (
     <div className={styles["layout"]}>
       <div className={styles["sidebar"]}>
@@ -17,7 +25,12 @@ export function Layout() {
         </div>
 
         <div className={styles["menu"]}>
-          <Link to="/" className={styles["link"]}>
+          <Link
+            to="/"
+            className={cn(styles["link"], {
+              [styles.active]: location.pathname === "/",
+            })}
+          >
             <img src="/menu-icon.svg" alt="Иконка меню" />
             Меню
           </Link>
