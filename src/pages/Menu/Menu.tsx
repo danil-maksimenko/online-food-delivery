@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import Headling from "../../components/Headling/Headling";
-import ProductCard from "../../components/ProductCard/ProductCard";
 import Search from "../../components/Search/Search";
 import { PREFIX } from "../../helpers/API";
 import { Product } from "../../interfaces/product.interface";
 import styles from "./Menu.module.css";
 import axios, { AxiosError } from "axios";
+import { MenuList } from "./MenuList/MenuList";
 
 export function Menu() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -45,18 +45,7 @@ export function Menu() {
       </div>
       <div>
         {error && <>{error}</>}
-        {!isLoading &&
-          products.map((product) => (
-            <ProductCard
-              key={product.id}
-              id={product.id}
-              name={product.name}
-              description={product.ingredients.join(", ")}
-              rating={product.rating}
-              price={product.price}
-              image={product.image}
-            />
-          ))}
+        {!isLoading && <MenuList products={products} />}
         {isLoading && <>Загружаем продукты...</>}
       </div>
     </>
