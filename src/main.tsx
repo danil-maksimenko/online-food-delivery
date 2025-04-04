@@ -8,6 +8,9 @@ import { Layout } from "./layout/Layout/Layout";
 import { Product } from "./pages/Product/Product";
 import axios from "axios";
 import { PREFIX } from "./helpers/API";
+import { AuthLayout } from "./layout/Auth/AuthLayout";
+import { Login } from "./pages/Login/Login";
+import { Register } from "./pages/Register/Register";
 
 const Menu = lazy(() => import("./pages/Menu/Menu"));
 
@@ -33,20 +36,25 @@ const router = createBrowserRouter([
         element: <Product />,
         errorElement: <>Ошибка</>,
         loader: async ({ params }) => {
-          await new Promise<void>((resolve) => {
-            setTimeout(() => {
-              resolve();
-            }, 1500);
-          });
-          const { data } = await axios.get(`${PREFIX}/products/${params.id}`);
-          return data;
+          const response = await axios.get(`${PREFIX}/products/${params.id}`);
+          return response.data;
         },
       },
     ],
   },
   {
-    path: "/cart",
-    element: <Cart />,
+    path: "/auth",
+    element: <AuthLayout />,
+    children: [
+      {
+        path: "login",
+        element: <Login />,
+      },
+      {
+        path: "register",
+        element: <Register />,
+      },
+    ],
   },
   {
     path: "*",
