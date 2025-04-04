@@ -1,4 +1,4 @@
-export interface Root {
+export interface ProductInt {
   id: number;
   name: string;
   price: number;
