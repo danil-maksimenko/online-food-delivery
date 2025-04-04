@@ -2,25 +2,20 @@ import { useEffect, useState } from "react";
 import Headling from "../../components/Headling/Headling";
 import Search from "../../components/Search/Search";
 import { PREFIX } from "../../helpers/API";
-import { Product } from "../../interfaces/product.interface";
+import { ProductInt } from "../../interfaces/product.interface";
 import styles from "./Menu.module.css";
 import axios, { AxiosError } from "axios";
 import { MenuList } from "./MenuList/MenuList";
 
 export function Menu() {
-  const [products, setProducts] = useState<Product[]>([]);
+  const [products, setProducts] = useState<ProductInt[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | undefined>();
 
   const getMenu = async () => {
     try {
       setIsLoading(true);
-      await new Promise<void>((resolve) => {
-        setTimeout(() => {
-          resolve();
-        }, 1500);
-      });
-      const { data } = await axios.get<Product[]>(`${PREFIX}/products`);
+      const { data } = await axios.get<ProductInt[]>(`${PREFIX}/products`);
       setProducts(data);
       setIsLoading(false);
     } catch (e) {
@@ -51,3 +46,5 @@ export function Menu() {
     </>
   );
 }
+
+export default Menu;

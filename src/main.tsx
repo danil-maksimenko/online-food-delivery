@@ -1,14 +1,15 @@
-import { StrictMode } from "react";
+import { lazy, StrictMode, Suspense } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import { RouterProvider, createBrowserRouter } from "react-router";
-import { Menu } from "./pages/Menu/Menu";
 import { Cart } from "./pages/Cart/Cart";
 import { Error } from "./pages/Error/Error";
 import { Layout } from "./layout/Layout/Layout";
 import { Product } from "./pages/Product/Product";
 import axios from "axios";
 import { PREFIX } from "./helpers/API";
+
+const Menu = lazy(() => import("./pages/Menu/Menu"));
 
 const router = createBrowserRouter([
   {
@@ -17,7 +18,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Menu />,
+        element: (
+          <Suspense fallback={<>Загрузка...</>}>
+            <Menu />
+          </Suspense>
+        ),
       },
       {
         path: "/cart",
