@@ -69,3 +69,21 @@
   padding: 40px 60px;
   width: 100%;
 }
+
+.cart {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.count {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  width: 25px;
+  height: 25px;
+  background: var(--primary-color);
+  color: var(--white-color);
+  border-radius: 50%;
+}

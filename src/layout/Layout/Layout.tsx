@@ -45,16 +45,20 @@ export function Layout() {
             <img src="/menu-icon.svg" alt="Иконка меню" />
             Меню
           </NavLink>
-          <NavLink
-            to="/cart"
-            className={({ isActive }) =>
-              cn(styles["link"], { [styles.active]: isActive })
-            }
-          >
-            <img src="/cart-icon.svg" alt="Иконка корзины" />
-            Корзина
-          </NavLink>
-          {items.reduce((acc, item) => (acc += item.cout), 0)}
+          <div className={styles["cart"]}>
+            <NavLink
+              to="/cart"
+              className={({ isActive }) =>
+                cn(styles["link"], { [styles.active]: isActive })
+              }
+            >
+              <img src="/cart-icon.svg" alt="Иконка корзины" />
+              Корзина
+            </NavLink>
+            <div className={styles["count"]}>
+              {items.reduce((acc, item) => (acc += item.cout), 0)}
+            </div>
+          </div>
         </div>
         <Button className={styles["exit"]} onClick={logout}>
           <img src="/exit-icon.svg" alt="Иконка выхода" />
