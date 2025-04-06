@@ -56,7 +56,7 @@ export function Layout() {
               Корзина
             </NavLink>
             <div className={styles["count"]}>
-              {items.reduce((acc, item) => (acc += item.cout), 0)}
+              {items.reduce((acc, item) => (acc += item.count), 0)}
             </div>
           </div>
         </div>
