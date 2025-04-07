@@ -28,7 +28,7 @@ export const cartSlice = createSlice({
       if (existed.count === 1) {
         state.items = state.items.filter((i) => i.id !== action.payload);
       } else {
-        state.items.map((i) => {
+        state.items.forEach((i) => {
           if (i.id === action.payload) {
             i.count -= 1;
           }
@@ -43,7 +43,7 @@ export const cartSlice = createSlice({
         state.items.push({ id: action.payload, count: 1 });
         return;
       }
-      state.items.map((i) => {
+      state.items.forEach((i) => {
         if (i.id === action.payload) {
           i.count += 1;
         }

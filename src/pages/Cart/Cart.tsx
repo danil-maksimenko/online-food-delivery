@@ -24,7 +24,7 @@ export function Cart() {
 
   useEffect(() => {
     loadAllItems();
-  });
+  }, [items]);
 
   return (
     <>
